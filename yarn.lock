@@ -49,7 +49,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20250204.0":
+"@cloudflare/workers-types@npm:4.20250204.0":
   version: 4.20250204.0
   resolution: "@cloudflare/workers-types@npm:4.20250204.0"
   checksum: 10c0/9c5340ff0ce87a603109f1f06041dfd114fe518577e798e7c30e20228207c4a9074be12e5df5eb3692d6a67e14ca02708f2bc3188cad542c43c4213c73775619
@@ -428,12 +428,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@green-flash/mockbox@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20250204.0"
+    "@cloudflare/workers-types": "npm:4.20250204.0"
     "@ngneat/falso": "npm:7.3.0"
     "@types/node": "npm:22.13.1"
     tsx: "npm:4.19.2"
     typescript: "npm:5.7.3"
-    wrangler: "npm:^3.108.1"
+    wrangler: "npm:3.108.1"
   languageName: unknown
   linkType: soft
 
@@ -2121,7 +2121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.108.1":
+"wrangler@npm:3.108.1":
   version: 3.108.1
   resolution: "wrangler@npm:3.108.1"
   dependencies:
