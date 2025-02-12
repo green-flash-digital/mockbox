@@ -1,10 +1,7 @@
 import { Pagination } from "../src/index.js";
 import { ResponseJSON } from "./ResponseJSON.js";
 
-type RequestSort = {
-  sortBy: string[];
-  order: string[];
-};
+type RequestSort = string[];
 type RequestPagination = Pick<Pagination, "page" | "page_size">;
 
 function parseRequest<T extends Request>(request: T) {
@@ -20,20 +17,19 @@ function parseRequest<T extends Request>(request: T) {
   const page_size = parseInt(url.searchParams.get("page_size") || "10", 10);
 
   // Sorting params
-  const sortBy = (url.searchParams.get("sortBy") || "id").split(",");
-  const order = (url.searchParams.get("order") || "asc").split(",");
+  const sort = (url.searchParams.get("sort") || "").split(",");
 
   // Build the rest of the query params
   const query = Object.fromEntries(
     [...url.searchParams.entries()].filter(
-      ([key]) => !["page", "page_size", "sortBy", "order"].includes(key)
+      ([key]) => !["page", "page_size", "sort"].includes(key)
     )
   );
 
   return {
     assetUrl,
     pagination: { page, page_size },
-    sort: { sortBy, order },
+    sort,
     query,
   };
 }
@@ -64,9 +60,15 @@ async function filterData(data: any[], query: { [key: string]: string }) {
 
 async function sortData(data: any[], sort: RequestSort) {
   return data.sort((a, b) => {
-    for (let i = 0; i < sort.sortBy.length; i++) {
-      const key = sort.sortBy[i];
-      const sortOrder = sort.order[i] === "desc" ? -1 : 1;
+    for (let i = 0; i < sort.length; i++) {
+      let key = sort[i];
+      let sortOrder = 1; // Default to ascending
+
+      // Check if the key starts with "-" (descending order)
+      if (key.startsWith("-")) {
+        key = key.substring(1); // Remove "-"
+        sortOrder = -1;
+      }
 
       if (a[key] > b[key]) return sortOrder;
       if (a[key] < b[key]) return -sortOrder;
