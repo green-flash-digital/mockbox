@@ -6,7 +6,13 @@ type RequestSort = {
 };
 type RequestPagination = {
   page: number;
-  limit: number;
+  page_size: number;
+};
+type ResponsePagination = RequestPagination & {
+  data: any[];
+  next: number | null;
+  pages: number;
+  count: number;
 };
 
 function parseRequest<T extends Request>(request: T) {
@@ -19,7 +25,7 @@ function parseRequest<T extends Request>(request: T) {
 
   // Pagination params
   const page = parseInt(url.searchParams.get("page") || "1", 10);
-  const limit = parseInt(url.searchParams.get("limit") || "10", 10);
+  const page_size = parseInt(url.searchParams.get("page_size") || "10", 10);
 
   // Sorting params
   const sortBy = (url.searchParams.get("sortBy") || "id").split(",");
@@ -28,13 +34,13 @@ function parseRequest<T extends Request>(request: T) {
   // Build the rest of the query params
   const query = Object.fromEntries(
     [...url.searchParams.entries()].filter(
-      ([key]) => !["page", "limit", "sortBy", "order"].includes(key)
+      ([key]) => !["page", "page_size", "sortBy", "order"].includes(key)
     )
   );
 
   return {
     assetUrl,
-    pagination: { page, limit },
+    pagination: { page, page_size },
     sort: { sortBy, order },
     query,
   };
@@ -78,10 +84,24 @@ async function sortData(data: any[], sort: RequestSort) {
 }
 
 // Pagination logic
-async function paginateData(items: any[], pagination: RequestPagination) {
-  const startIndex = (pagination.page - 1) * pagination.limit;
-  const data = items.slice(startIndex, startIndex + pagination.limit);
-  return data;
+async function paginateData(
+  items: any[],
+  { page, page_size }: RequestPagination
+): Promise<ResponsePagination> {
+  const startIndex = (page - 1) * page_size;
+  const data = items.slice(startIndex, startIndex + page_size);
+
+  // Check if there is a next page
+  const nextPage = startIndex + page_size < items.length ? page + 1 : null;
+
+  return {
+    page,
+    page_size,
+    data,
+    next: nextPage,
+    count: items.length,
+    pages: Math.ceil(items.length / page_size),
+  };
 }
 
 export const handleRequest: PagesFunction = async ({ request, env }) => {
@@ -92,6 +112,6 @@ export const handleRequest: PagesFunction = async ({ request, env }) => {
   const dataSorted = await sortData(dataFiltered, sort);
   const dataPaginated = await paginateData(dataSorted, pagination);
 
-  const json = { ...pagination, data: dataPaginated };
+  const json = dataPaginated;
   return new ResponseJSON(json);
 };
