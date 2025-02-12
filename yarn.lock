@@ -424,9 +424,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@green-flash/mockbox@workspace:.":
+"@gfdigital/mockbox@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@green-flash/mockbox@workspace:."
+  resolution: "@gfdigital/mockbox@workspace:."
   dependencies:
     "@cloudflare/workers-types": "npm:4.20250204.0"
     "@ngneat/falso": "npm:7.3.0"

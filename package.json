@@ -1,13 +1,23 @@
 {
-  "name": "@green-flash/mockbox",
+  "name": "mockingjson",
   "description": "A simple utility to mock tabular data",
   "packageManager": "yarn@4.6.0",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "build": "yarn tsc --project tsconfig.build.json",
     "deploy": "yarn wrangler pages deploy",
     "dev": "yarn wrangler pages dev",
-    "generate": "yarn tsx ./scripts/create-data.ts"
+    "seed": "yarn tsx ./scripts/seed.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/types.d.ts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -1,20 +1,19 @@
-import { randProduct, randUser } from "@ngneat/falso";
-import { tryHandle } from "../utils/index.js";
+import { tryHandle } from "./index.js";
 import { writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 
 const DATA_DIR = path.resolve(import.meta.dirname, `../public/data`);
 
-async function createData<T extends () => any>(
+export async function createData<T extends () => any>(
   entry: T,
   endpoint: string,
   numOfRecords?: number
 ): Promise<ReturnType<T>[]>;
-async function createData<T extends any[]>(
+export async function createData<T extends any[]>(
   entry: T,
   endpoint: string
 ): Promise<T>;
-async function createData<T extends any[] | (() => any)>(
+export async function createData<T extends any[] | (() => any)>(
   entry: T,
   endpoint: string,
   numOfRecords = 500
@@ -54,17 +53,3 @@ async function createData<T extends any[] | (() => any)>(
   }
   return data;
 }
-
-async function createEndpoints() {
-  // Create product endpoints
-  const products = await createData(randProduct, "/products", 500);
-  const categories = [
-    ...new Set(products.map((thing) => thing.category)).values(),
-  ].map((category) => ({ category }));
-  await createData(categories, "/products/categories/test");
-
-  // Create user endpoints
-  await createData(randUser, "/users", 500);
-}
-
-createEndpoints();
