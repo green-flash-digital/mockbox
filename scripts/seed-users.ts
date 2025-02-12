@@ -2,7 +2,7 @@ import { randUser } from "@ngneat/falso";
 import { createData } from "../utils/util.create-data.js";
 
 export type User = {
-  id: string;
+  id: number;
   firstName: string;
   lastName: string;
   username: string;
