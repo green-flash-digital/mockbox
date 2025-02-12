@@ -7,7 +7,7 @@
   "scripts": {
     "build": "yarn tsc --project tsconfig.build.json",
     "deploy": "yarn build && yarn deploy:cf && yarn deploy:npm",
-    "deploy:fc": "yarn wrangler pages deploy",
+    "deploy:cf": "yarn wrangler pages deploy",
     "deploy:npm": "npm publish --access public",
     "dev": "yarn wrangler pages dev",
     "seed": "yarn tsx ./scripts/seed.ts"
