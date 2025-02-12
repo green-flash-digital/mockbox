@@ -3,7 +3,7 @@
   "description": "A simple utility to mock tabular data",
   "packageManager": "yarn@4.6.0",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "build": "yarn tsc --project tsconfig.build.json",
     "deploy": "yarn build && yarn deploy:cf && yarn deploy:npm",
