@@ -1,19 +1,11 @@
+import { Pagination } from "../src/index.js";
 import { ResponseJSON } from "./ResponseJSON.js";
 
 type RequestSort = {
   sortBy: string[];
   order: string[];
 };
-type RequestPagination = {
-  page: number;
-  page_size: number;
-};
-type ResponsePagination = RequestPagination & {
-  data: any[];
-  next: number | null;
-  pages: number;
-  count: number;
-};
+type RequestPagination = Pick<Pagination, "page" | "page_size">;
 
 function parseRequest<T extends Request>(request: T) {
   // Convert the request into a URL
@@ -87,7 +79,7 @@ async function sortData(data: any[], sort: RequestSort) {
 async function paginateData(
   items: any[],
   { page, page_size }: RequestPagination
-): Promise<ResponsePagination> {
+): Promise<Pagination> {
   const startIndex = (page - 1) * page_size;
   const data = items.slice(startIndex, startIndex + page_size);
 

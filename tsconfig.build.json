@@ -7,5 +7,5 @@
     "emitDeclarationOnly": true,
     "declarationMap": true
   },
-  "include": ["./scripts/types.ts"]
+  "include": ["./src/index.ts"]
 }
