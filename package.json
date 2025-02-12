@@ -1,3 +1,29 @@
 {
-  "packageManager": "yarn@4.6.0"
+  "name": "@green-flash/mockbox",
+  "description": "A simple utility to mock tabular data",
+  "packageManager": "yarn@4.6.0",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "yarn wrangler pages dev",
+    "generate": "yarn tsx ./scripts/create-data.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/green-flash-digital/mockbox.git"
+  },
+  "author": "Drew DeCarme (drew@greenflash.digital)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/green-flash-digital/mockbox/issues"
+  },
+  "homepage": "https://github.com/green-flash-digital/mockbox#readme",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250204.0",
+    "@ngneat/falso": "7.3.0",
+    "@types/node": "22.13.1",
+    "tsx": "4.19.2",
+    "typescript": "5.7.3",
+    "wrangler": "^3.108.1"
+  }
 }

@@ -1,0 +1,90 @@
+[
+  {
+    "category": "Books",
+    "id": 1
+  },
+  {
+    "category": "Smartphones & Accessories",
+    "id": 2
+  },
+  {
+    "category": "Antiques",
+    "id": 3
+  },
+  {
+    "category": "Computers & Tablets",
+    "id": 4
+  },
+  {
+    "category": "Kindle",
+    "id": 5
+  },
+  {
+    "category": "Appliances",
+    "id": 6
+  },
+  {
+    "category": "Health & Beauty",
+    "id": 7
+  },
+  {
+    "category": "Movies & TV",
+    "id": 8
+  },
+  {
+    "category": "Sporting Goods",
+    "id": 9
+  },
+  {
+    "category": "Garden",
+    "id": 10
+  },
+  {
+    "category": "Automotive Parts",
+    "id": 11
+  },
+  {
+    "category": "Musical Instruments",
+    "id": 12
+  },
+  {
+    "category": "Clothing",
+    "id": 13
+  },
+  {
+    "category": "Automotive Parts & Accessories",
+    "id": 14
+  },
+  {
+    "category": "Grocery",
+    "id": 15
+  },
+  {
+    "category": "Video Games",
+    "id": 16
+  },
+  {
+    "category": "Electronics",
+    "id": 17
+  },
+  {
+    "category": "Collectibles",
+    "id": 18
+  },
+  {
+    "category": "Toys",
+    "id": 19
+  },
+  {
+    "category": "Baby & Personal Care",
+    "id": 20
+  },
+  {
+    "category": "CDs & Vinyl",
+    "id": 21
+  },
+  {
+    "category": "Crafts",
+    "id": 22
+  }
+]
