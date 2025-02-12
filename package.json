@@ -5,6 +5,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "deploy": "yarn wrangler pages deploy",
     "dev": "yarn wrangler pages dev",
     "generate": "yarn tsx ./scripts/create-data.ts"
   },
