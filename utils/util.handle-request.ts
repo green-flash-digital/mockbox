@@ -105,5 +105,7 @@ export const handleRequest: PagesFunction = async ({ request, env }) => {
   const dataPaginated = await paginateData(dataSorted, pagination);
 
   const json = dataPaginated;
-  return new ResponseJSON(json);
+  const response = new ResponseJSON(json);
+  response.headers.set("Access-Control-Allow-Origin", "*");
+  return response;
 };
