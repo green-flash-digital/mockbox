@@ -96,12 +96,7 @@ async function paginateData(
   };
 }
 
-export const handleRequest: PagesFunction = async ({ request, env, next }) => {
-  // allow all requests
-  const response = await next();
-  response.headers.set("Access-Control-Allow-Origin", "*");
-  response.headers.set("Access-Control-Max-Age", "86400");
-
+export const handleRequest: PagesFunction = async ({ request, env }) => {
   const { assetUrl, pagination, sort, query } = parseRequest(request);
 
   const dataRaw = await fetchData(env, assetUrl);
